@@ -1,79 +1,9 @@
-.particle {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: white;
-  pointer-events: none;
-  animation:
-    fadeToTransparent var(--fade-duration) forwards,
-    disperse 500ms forwards var(--particle-curve);
-}
-
-html {
-  --red: oklch(0.65 0.3 19.41);
-  --particle-curve: cubic-bezier(0.2, 0.56, 0, 1);
-}
-
 body {
-  display: grid;
-  place-content: center;
-  height: 100vh;
-  background: hsl(210deg 15% 6%);
+	margin: 0;
+	overflow: hidden;
+	background: #000;
+	font-family: 'Courier New', monospace;
 }
-
-.particleButton {
-  position: relative;
-  padding: 16px;
-  background: transparent;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.particleButton:hover {
-  background: hsl(0deg 0% 100% / 0.1);
-}
-
-.particleButton:hover path {
-  stroke: var(--red);
-}
-
-.particleButton.liked path {
-  fill: var(--red);
-  stroke: var(--red);
-}
-
-.particleButton svg {
-  position: relative;
-  display: block;
-  width: 3rem;
-  height: 3rem;
-}
-
-.visually-hidden:not(:focus):not(:active) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-@keyframes fadeToTransparent {
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes disperse {
-  to {
-    transform: translate(
-      calc(cos(var(--angle)) * var(--distance)),
-      calc(sin(var(--angle)) * var(--distance))
-    );
-  }
+canvas {
+	display: block;
 }
