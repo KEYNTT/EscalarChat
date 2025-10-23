@@ -4,6 +4,7 @@ body {
 	background: #000;
 	font-family: 'Courier New', monospace;
 }
+
 canvas {
 	display: block;
 }
