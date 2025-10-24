@@ -8,15 +8,15 @@
   /* ----------------------------
      Data: portfolio & skills
      ---------------------------- */
-  const portfolioData = [
-    { id: 1, title: 'Red Neuronal', description: 'Sistema avanzado de IA con capacidades de aprendizaje profundo para análisis predictivo y reconocimiento de patrones.', image: 'images/neural-network.jpg', tech: ['TensorFlow', 'Python', 'CUDA'] },
-    { id: 2, title: 'Nube Cuántica', description: 'Infraestructura de nube de próxima generación aprovechando la computación cuántica para un poder de procesamiento sin precedentes.', image: 'images/quantum-cloud.jpg', tech: ['AWS', 'Kubernetes', 'Docker'] },
-    { id: 3, title: 'Bóveda Blockchain', description: 'Solución de almacenamiento descentralizado seguro usando encriptación avanzada y tecnología de libro mayor distribuido.', image: 'images/blockchain-vault.jpg', tech: ['Ethereum', 'Solidity', 'Web3'] },
-    { id: 4, title: 'Defensa Cibernética', description: 'Marco de ciberseguridad de grado militar con detección de amenazas en tiempo real y respuesta automatizada.', image: 'images/cyber-defense.jpg', tech: ['Zero Trust', 'Defensa IA', 'Encriptación'] },
-    { id: 5, title: 'Nexo de Datos', description: 'Plataforma de procesamiento de big data capaz de analizar petabytes de información en tiempo real.', image: 'images/data-nexus.jpg', tech: ['Apache Spark', 'Hadoop', 'Kafka'] },
-    { id: 6, title: 'Interfaz AR', description: 'Sistema de realidad aumentada para visualización de datos inmersiva y experiencias interactivas.', image: 'images/ar-interface.jpg', tech: ['Unity', 'ARCore', 'Visión Comp.'] },
-    { id: 7, title: 'Matriz IoT', description: 'Ecosistema IoT inteligente conectando millones de dispositivos con capacidades de computación en el borde.', image: 'images/iot-matrix.jpg', tech: ['MQTT', 'Edge AI', '5G'] }
-  ];
+const portfolioData = [
+  { id: 1, title: 'Red Neuronal', description: 'Sistema avanzado de IA con capacidades de aprendizaje profundo para análisis predictivo y reconocimiento de patrones.', image: 'neural-network.jpg', tech: ['TensorFlow', 'Python', 'CUDA'] },
+  { id: 2, title: 'Nube Cuántica', description: 'Infraestructura de nube de próxima generación aprovechando la computación cuántica para un poder de procesamiento sin precedentes.', image: 'quantum-cloud.jpg', tech: ['AWS', 'Kubernetes', 'Docker'] },
+  { id: 3, title: 'Bóveda Blockchain', description: 'Solución de almacenamiento descentralizado seguro usando encriptación avanzada y tecnología de libro mayor distribuido.', image: 'blockchain-vault.jpg', tech: ['Ethereum', 'Solidity', 'Web3'] },
+  { id: 4, title: 'Defensa Cibernética', description: 'Marco de ciberseguridad de grado militar con detección de amenazas en tiempo real y respuesta automatizada.', image: 'cyber-defense.jpg', tech: ['Zero Trust', 'Defensa IA', 'Encriptación'] },
+  { id: 5, title: 'Nexo de Datos', description: 'Plataforma de procesamiento de big data capaz de analizar petabytes de información en tiempo real.', image: 'data-nexus.jpg', tech: ['Apache Spark', 'Hadoop', 'Kafka'] },
+  { id: 6, title: 'Interfaz AR', description: 'Sistema de realidad aumentada para visualización de datos inmersiva y experiencias interactivas.', image: 'ar-interface.jpg', tech: ['Unity', 'ARCore', 'Visión Comp.'] },
+  { id: 7, title: 'Matriz IoT', description: 'Ecosistema IoT inteligente conectando millones de dispositivos con capacidades de computación en el borde.', image: 'iot-matrix.jpg', tech: ['MQTT', 'Edge AI', '5G'] }
+];
 
   const skillsData = [
     { name: 'React.js', icon: '⚛️', level: 95, category: 'frontend' },
@@ -716,3 +716,4 @@
   };
 
 })(); // IIFE end
+
