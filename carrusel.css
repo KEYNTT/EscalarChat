@@ -39,6 +39,19 @@ body{
 .tech-badge{padding:6px 12px;font-size:12px;border-radius:999px;background:rgba(153,69,255,0.08);border:1px solid rgba(153,69,255,0.18);color:var(--accent-purple);text-transform:uppercase;letter-spacing:1px}
 .card-cta{margin-top:14px;padding:10px 22px;border-radius:28px;border:none;cursor:pointer;font-weight:700;text-transform:uppercase;letter-spacing:1px;background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));color:#fff;box-shadow:0 6px 18px rgba(153,69,255,.22)}
 
+.carousel-container {
+  touch-action: pan-y; /* permite solo desplazamiento vertical normal, bloquea horizontal */
+  overflow: hidden;
+}
+.carousel {
+  cursor: grab;
+  touch-action: none; /* asegura control total del pointer para arrastre horizontal */
+}
+.carousel:active {
+  cursor: grabbing;
+}
+
+
 .carousel-controls{position:absolute;bottom:-72px;left:50%;transform:translateX(-50%);display:flex;gap:18px;z-index:1200}
 .carousel-btn{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--carbon-medium),var(--carbon-dark));border:2px solid var(--metal-dark);color:var(--accent-purple);font-size:26px;cursor:pointer;transition:transform .2s ease}
 .carousel-btn:hover{transform:scale(1.06);box-shadow:0 10px 30px rgba(153,69,255,.12)}
