@@ -176,11 +176,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   carousel.addEventListener('pointermove', (ev) => {
     if (!isPointerDown || ev.pointerId !== activePointerId) return;
+
     const x = ev.clientX;
-    dragDelta = x - startX;
+    const y = ev.clientY;
+
+    const deltaX = x - startX;
+    const deltaY = y - (ev.startY || y); // si no existe, usa el mismo valor
+
+    // 👇 Si el movimiento es más vertical que horizontal, no bloquear el scroll
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+      isPointerDown = false;
+      return;
+    }
+    
+    dragDelta = deltaX;
     if (Math.abs(dragDelta) > clickThreshold) wasDragged = true;
     lastX = x;
     applyDragOverlay(dragDelta);
+    ev.preventDefault(); // solo evita el scroll cuando es movimiento lateral
   });
 
   function finishPointerInteraction(ev){
