@@ -81,7 +81,6 @@ body{
   touch-action: pan-y;
 }
 
-
 .carousel-controls{position:absolute;bottom:-72px;left:50%;transform:translateX(-50%);display:flex;gap:18px;z-index:1200}
 .carousel-btn{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--carbon-medium),var(--carbon-dark));border:2px solid var(--metal-dark);color:var(--accent-purple);font-size:26px;cursor:pointer;transition:transform .2s ease}
 .carousel-btn:hover{transform:scale(1.06);box-shadow:0 10px 30px rgba(153,69,255,.12)}
@@ -93,30 +92,40 @@ body{
 @media (max-width:900px){.carousel-item{width:320px;height:430px}.card-image{height:180px}}
 @media (max-width:520px){.carousel-item{width:280px;height:380px}.carousel-controls{bottom:-86px}}
 
-/* ==== ANIMACIÓN DE TEXTO "ESCALAR CHAT" ==== */
+/* ==== TEXTO BRILLANTE "ESCALAR CHAT" ==== */
 .animated-title {
-  margin-top: 2rem;
-  text-align: center;
-  font-size: 3em;
+  position: relative;
+  font-family: sans-serif;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: 2em;
+  letter-spacing: 0.5px;
+  overflow: hidden;
   background: linear-gradient(90deg, #000, #ffffff, #000);
   background-repeat: no-repeat;
   background-size: 80%;
   animation: animate 3.5s linear infinite;
   -webkit-background-clip: text;
-  background-clip: text; /* estándar */
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  background-clip: text; /* compatibilidad estándar */
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  margin-top: 3rem;
 }
+
 @keyframes animate {
-  0% { background-position: -500%; }
-  100% { background-position: 500%; }
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
 }
 
 @media (max-width: 600px) {
-  .animated-title { font-size: 2em; }
+  .animated-title {
+    font-size: 1.6em;
+  }
 }
+
 
 
 
