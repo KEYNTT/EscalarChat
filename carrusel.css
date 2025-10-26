@@ -92,37 +92,46 @@ body{
 @media (max-width:900px){.carousel-item{width:320px;height:430px}.card-image{height:180px}}
 @media (max-width:520px){.carousel-item{width:280px;height:380px}.carousel-controls{bottom:-86px}}
 
-/* ==== TEXTO BRILLANTE "ESCALAR CHAT" ==== */
+/* ==== TEXTO BRILLANTE "ESCALAR CHAT" (MISMO EFECTO, COMPATIBLE) ==== */
 .animated-title {
   position: relative;
   font-family: sans-serif;
   text-transform: uppercase;
   font-size: 2em;
   letter-spacing: 0.5px;
+  text-align: center;
+  margin-top: 3rem;
   overflow: hidden;
+
+  /* mismo degradado animado */
   background: linear-gradient(90deg, #000, #ffffff, #000);
   background-repeat: no-repeat;
   background-size: 80%;
   animation: animate 3.5s linear infinite;
+
+  /* compatibilidad universal */
   -webkit-background-clip: text;
-  background-clip: text; /* compatibilidad estándar */
-  -webkit-text-fill-color: rgba(255, 255, 255, 0);
-  text-align: center;
-  margin-top: 3rem;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  /* refuerzo visual solo si el clip no se aplica (en móviles) */
+  @supports not (-webkit-background-clip: text) {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.6);
+  }
 }
 
+/* animación original intacta */
 @keyframes animate {
-  0% {
-    background-position: -500%;
-  }
-  100% {
-    background-position: 500%;
-  }
+  0% { background-position: -500%; }
+  100% { background-position: 500%; }
 }
 
 @media (max-width: 600px) {
   .animated-title {
     font-size: 1.6em;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.6); /* mejora brillo visible */
   }
 }
 
