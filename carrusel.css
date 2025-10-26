@@ -93,3 +93,31 @@ body{
 @media (max-width:900px){.carousel-item{width:320px;height:430px}.card-image{height:180px}}
 @media (max-width:520px){.carousel-item{width:280px;height:380px}.carousel-controls{bottom:-86px}}
 
+/* ==== ANIMACIÓN DE TEXTO "ESCALAR CHAT" ==== */
+.animated-title {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 3em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #000, #ffffff, #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 3.5s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text; /* estándar */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+@keyframes animate {
+  0% { background-position: -500%; }
+  100% { background-position: 500%; }
+}
+
+@media (max-width: 600px) {
+  .animated-title { font-size: 2em; }
+}
+
+
+
+
