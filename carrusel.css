@@ -147,7 +147,8 @@ body{
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 20px; /* Ajusta este valor según necesites */
   z-index: 1000;
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
@@ -167,7 +168,7 @@ body{
 
 /* LOGO */
 .logo {
-  height:100px;* ajusta el tamaño */
+  height: 100px; /* ajusta el tamaño */
   width: auto;
   object-fit: contain;
   cursor: pointer;
