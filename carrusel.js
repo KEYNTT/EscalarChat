@@ -239,9 +239,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // recalc on resize
   let resizeTimer = null;
-  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => updateCarousel(), 150); });
+  window.addEventListener('resize', () => { 
+    clearTimeout(resizeTimer); 
+    resizeTimer = setTimeout(() => updateCarousel(), 150); 
+  });
 
   // init
   initCarousel();
-});
 
+  // === EFECTOS DEL ENCABEZADO ===
+
+  // 1️⃣ Cambiar fondo del header al hacer scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (header) header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // 2️⃣ Desplegar menú hamburguesa (si luego agregas el menú)
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.querySelector('.nav-list'); // opcional, si agregas el menú
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      document.body.classList.toggle('menu-open'); // útil para animaciones futuras
+      if (nav) nav.toggleAttribute('hidden');
+    });
+  }
+});
