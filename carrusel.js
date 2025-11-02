@@ -1,6 +1,6 @@
 
 const portfolioData = [
-  { id:1, title:'Matriz IoT', description:'Ecosistema IoT inteligente conectando millones de dispositivos.', image:'images/iot-matrix.jpg', tech:['MQTT','Edge AI','5G'] },
+  { id:1, title:'Matriz IoT', description:'YE.Ecosistema IoT inteligente conectando millones de dispositivos.', image:'images/iot-matrix.jpg', tech:['MQTT','Edge AI','5G'] },
   { id:2, title:'Interfaz AR', description:'Realidad aumentada para experiencias interactivas e inmersivas.', image:'images/ar-interface.jpg', tech:['Unity','ARCore','Visión Comp.'] },
   { id:3, title:'Nexo de Datos', description:'Plataforma de procesamiento de big data en tiempo real.', image:'images/data-nexus.jpg', tech:['Spark','Hadoop','Kafka'] },
   { id:4, title:'Defensa Cibernética', description:'Detección de amenazas en tiempo real y respuesta automatizada.', image:'images/cyber-defense.jpg', tech:['Zero Trust','SIEM'] },
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let pointerTargetItem = null; // item over which started pointerdown
   const clickThreshold = 10;   // px => si el movimiento < esto se considera click
   const dragThreshold = 80;    // px => si arrastra > esto cambia slide(s)
-  const resumeDelay = 3500;    // ms para reanudar auto-rotate tras interacción
-  const autoRotateInterval = 4000; // ms entre slides en auto-rotate
+  const resumeDelay = 3000;    // ms para reanudar auto-rotate tras interacción
+  const autoRotateInterval = 3000; // ms entre slides en auto-rotate
 
   function computeSpacing(){
     const w = window.innerWidth;
