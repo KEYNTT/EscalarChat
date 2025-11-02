@@ -1,4 +1,3 @@
-
 const portfolioData = [
   { id:1, title:'Matriz IoT', description:'YE.Ecosistema IoT inteligente conectando millones de dispositivos.', image:'images/iot-matrix.jpg', tech:['MQTT','Edge AI','5G'] },
   { id:2, title:'Interfaz AR', description:'Realidad aumentada para experiencias interactivas e inmersivas.', image:'images/ar-interface.jpg', tech:['Unity','ARCore','Visión Comp.'] },
@@ -22,14 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let isPointerDown = false;
   let activePointerId = null;
   let startX = 0;
+  let startY = 0; // 👈 AGREGADO
   let lastX = 0;
   let dragDelta = 0;
   let wasDragged = false;
-  let pointerTargetItem = null; // item over which started pointerdown
-  const clickThreshold = 10;   // px => si el movimiento < esto se considera click
-  const dragThreshold = 80;    // px => si arrastra > esto cambia slide(s)
-  const resumeDelay = 3000;    // ms para reanudar auto-rotate tras interacción
-  const autoRotateInterval = 3000; // ms entre slides en auto-rotate
+  let pointerTargetItem = null;
+  let isHorizontalDrag = null; // 👈 NUEVO: detectar dirección
+  const clickThreshold = 10;
+  const dragThreshold = 80;
+  const resumeDelay = 3000;
+  const autoRotateInterval = 3000;
 
   function computeSpacing(){
     const w = window.innerWidth;
@@ -114,11 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
       item.style.zIndex = zIndex;
       item.style.transform = `translate(-50%,-50%) translateX(${tx}px) translateZ(${tz}px) rotateY(${rot}deg) scale(${scale})`;
       item.style.opacity = opacity;
-      // Make sure lateral items are pointer-enabled so they can be clicked
       item.style.pointerEvents = (opacity === "0" || opacity === 0) ? 'none' : 'auto';
     });
 
-    // indicators
     const dots = indicatorsContainer.querySelectorAll('.indicator');
     dots.forEach((d,i) => d.classList.toggle('active', i === currentIndex));
   }
@@ -139,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function prevSlide(){ currentIndex = (currentIndex - 1 + portfolioData.length) % portfolioData.length; updateCarousel(); }
   function goToSlide(i){ currentIndex = ((i % portfolioData.length) + portfolioData.length) % portfolioData.length; updateCarousel(); }
 
-  // Auto-rotate control
   function startAutoRotate(){
     stopAutoRotate();
     autoRotateId = setInterval(() => { nextSlide(); }, autoRotateInterval);
@@ -150,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => startAutoRotate(), resumeDelay);
   }
 
-  // UI bindings
   prevBtn.addEventListener('click', () => { prevSlide(); resetAutoRotateWithDelay(); });
   nextBtn.addEventListener('click', () => { nextSlide(); resetAutoRotateWithDelay(); });
 
@@ -159,40 +156,54 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowRight'){ nextSlide(); resetAutoRotateWithDelay(); }
   });
 
-  // POINTER (drag + click-to-center) - single robust handler
+  // ============================================
+  // 🔥 POINTER EVENTS CORREGIDOS
+  // ============================================
+  
   carousel.addEventListener('pointerdown', (ev) => {
     if (ev.button && ev.button !== 0) return;
     isPointerDown = true;
     activePointerId = ev.pointerId;
     startX = ev.clientX;
+    startY = ev.clientY; // 👈 GUARDAMOS Y INICIAL
     lastX = startX;
     dragDelta = 0;
     wasDragged = false;
-    // find item under pointer -> candidate to center on click
+    isHorizontalDrag = null; // 👈 RESETEAR
     pointerTargetItem = ev.target.closest ? ev.target.closest('.carousel-item') : null;
-    try { ev.target.setPointerCapture(ev.pointerId); } catch(e){ try { carousel.setPointerCapture(ev.pointerId); } catch(e2) {} }
+    
+    try { ev.target.setPointerCapture(ev.pointerId); } catch(e){ 
+      try { carousel.setPointerCapture(ev.pointerId); } catch(e2) {} 
+    }
     stopAutoRotate();
   });
 
   carousel.addEventListener('pointermove', (ev) => {
     if (!isPointerDown || ev.pointerId !== activePointerId) return;
 
-    const x = ev.clientX;
-    const y = ev.clientY;
+    const deltaX = ev.clientX - startX;
+    const deltaY = ev.clientY - startY; // 👈 CORRECTO
 
-    const deltaX = x - startX;
-    const deltaY = y - (ev.startY || y); // si no existe, usa el mismo valor
+    // 🎯 Detectar dirección solo la primera vez que se mueve
+    if (isHorizontalDrag === null && (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)) {
+      isHorizontalDrag = Math.abs(deltaX) > Math.abs(deltaY);
+    }
 
-    // 👇 Si el movimiento es más vertical que horizontal, no bloquear el scroll
-    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+    // 🚫 Si es scroll vertical, soltar el drag
+    if (isHorizontalDrag === false) {
       isPointerDown = false;
+      try { if (activePointerId != null) carousel.releasePointerCapture(activePointerId); } catch(e){}
       return;
     }
-    
-    dragDelta = deltaX;
-    if (Math.abs(dragDelta) > clickThreshold) wasDragged = true;
-    lastX = x;
-    applyDragOverlay(dragDelta);
+
+    // ✅ Si es drag horizontal, prevenir scroll y mover carrusel
+    if (isHorizontalDrag === true) {
+      ev.preventDefault(); // 👈 Solo prevenir si es horizontal
+      dragDelta = deltaX;
+      if (Math.abs(dragDelta) > clickThreshold) wasDragged = true;
+      lastX = ev.clientX;
+      applyDragOverlay(dragDelta);
+    }
   });
 
   function finishPointerInteraction(ev){
@@ -201,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
     try { if (activePointerId != null) carousel.releasePointerCapture(activePointerId); } catch(e){}
     activePointerId = null;
 
-    // if user dragged enough -> move slides
     if (wasDragged && Math.abs(dragDelta) >= dragThreshold){
       const s1 = computeSpacing().s1 || 400;
       const change = Math.max(1, Math.round(Math.abs(dragDelta) / s1));
@@ -209,58 +219,49 @@ document.addEventListener('DOMContentLoaded', () => {
       else currentIndex = (currentIndex - change + portfolioData.length) % portfolioData.length;
       updateCarousel();
     } else {
-      // no drag significant -> treat as click/tap: center the item where started the pointer (pointerTargetItem)
       if (pointerTargetItem && !wasDragged){
         const idx = parseInt(pointerTargetItem.dataset.index, 10);
         if (!Number.isNaN(idx)) goToSlide(idx);
       } else {
-        // restore to base positions
         updateCarousel();
       }
     }
 
-    // cleanup & resume auto-rotate after delay
     dragDelta = 0;
     wasDragged = false;
     pointerTargetItem = null;
+    isHorizontalDrag = null; // 👈 RESETEAR
     resetAutoRotateWithDelay();
   }
 
   carousel.addEventListener('pointerup', finishPointerInteraction);
   carousel.addEventListener('pointercancel', finishPointerInteraction);
-  // also listen on window in case pointer is released outside the carousel
   window.addEventListener('pointerup', finishPointerInteraction);
   window.addEventListener('pointercancel', finishPointerInteraction);
 
-  // pause on hover (desktop) and resume after delay on leave
   carousel.addEventListener('mouseenter', () => stopAutoRotate());
   carousel.addEventListener('mouseleave', () => resetAutoRotateWithDelay());
 
-  // recalc on resize
   let resizeTimer = null;
   window.addEventListener('resize', () => { 
     clearTimeout(resizeTimer); 
     resizeTimer = setTimeout(() => updateCarousel(), 150); 
   });
 
-  // init
   initCarousel();
 
   // === EFECTOS DEL ENCABEZADO ===
-
-  // 1️⃣ Cambiar fondo del header al hacer scroll
   window.addEventListener('scroll', () => {
     const header = document.querySelector('.header');
     if (header) header.classList.toggle('scrolled', window.scrollY > 10);
   });
 
-  // 2️⃣ Desplegar menú hamburguesa (si luego agregas el menú)
   const menuToggle = document.getElementById('menuToggle');
-  const nav = document.querySelector('.nav-list'); // opcional, si agregas el menú
+  const nav = document.querySelector('.nav-list');
 
   if (menuToggle) {
     menuToggle.addEventListener('click', () => {
-      document.body.classList.toggle('menu-open'); // útil para animaciones futuras
+      document.body.classList.toggle('menu-open');
       if (nav) nav.toggleAttribute('hidden');
     });
   }
