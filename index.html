@@ -8,17 +8,7 @@
   <link rel="stylesheet" href="carrusel.css">
 </head>
 <body>
-  <header class="header">
-    <div class="header-container">
-      <img src="images/logo.png" alt="Logo Escalar Chat" class="logo">
-      <button id="menuToggle" class="menu-toggle" aria-label="Menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </header>
-<body>
+  <!-- HEADER (solo una vez) -->
   <header class="header">
     <div class="header-container">
       <img src="images/logo.png" alt="Logo Escalar Chat" class="logo">
@@ -31,52 +21,36 @@
   </header>
 
   <main>
-<!-- SECCIÓN DE INICIO CON STAR TRAILS ORBITAL -->
-<section class="animated-hero">
-  <!-- Efecto orbital mejorado -->
-  <div class="orbital-trails">
-    <div class="orbital-particle"></div>
-    <div class="orbital-particle"></div>
-    <div class="orbital-particle"></div>
-    <div class="orbital-particle"></div>
-  </div>
-  
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1 class="hero-title">ESCALAR CHAT</h1>
-      <p class="hero-subtitle">Automatiza. Vende. Escala.</p>
-      <p class="hero-description">
-        Soluciones inteligentes de mensajería automatizada para impulsar tu negocio al siguiente nivel
-      </p>
-      <div class="hero-buttons">
-        <button class="hero-btn primary">Comenzar Ahora</button>
-        <button class="hero-btn secondary">Ver Demostración</button>
+    <!-- SECCIÓN DE INICIO CON STAR TRAILS ORBITAL -->
+    <section class="animated-hero">
+      <div class="orbital-trails">
+        <div class="orbital-particle"></div>
+        <div class="orbital-particle"></div>
+        <div class="orbital-particle"></div>
+        <div class="orbital-particle"></div>
       </div>
-    </div>
-    
-    <div class="hero-image">
-      <img src="images/hero-image.png" alt="Escalar Chat" class="hero-img">
-    </div>
-  </div>
-  <!-- Línea de cristal para transición -->
-  <div class="glass-line"></div>
-</section>
+      
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">ESCALAR CHAT</h1>
+          <p class="hero-subtitle">Automatiza. Vende. Escala.</p>
+          <p class="hero-description">
+            Soluciones inteligentes de mensajería automatizada para impulsar tu negocio al siguiente nivel
+          </p>
+          <div class="hero-buttons">
+            <button class="hero-btn primary">Comenzar Ahora</button>
+            <button class="hero-btn secondary">Ver Demostración</button>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <img src="images/hero-image.png" alt="Escalar Chat" class="hero-img">
+        </div>
+      </div>
+      <div class="glass-line"></div>
+    </section>
 
-<!-- SECCIÓN DEL CARRUSEL (MANTIENE IGUAL) -->
-<section class="hero" id="home">
-  <div class="carousel-container">
-    <div class="carousel" id="carousel"></div>
-    
-    <div class="carousel-controls">
-      <button class="carousel-btn" id="prevBtn" aria-label="Anterior">‹</button>
-      <button class="carousel-btn" id="nextBtn" aria-label="Siguiente">›</button>
-    </div>
-    
-    <div class="carousel-indicators" id="indicators"></div>
-  </div>
-</section>
-
-    <!-- SECCIÓN DEL CARRUSEL (la que ya tienes) -->
+    <!-- SECCIÓN DEL CARRUSEL (solo una vez) -->
     <section class="hero" id="home">
       <div class="carousel-container">
         <div class="carousel" id="carousel"></div>
