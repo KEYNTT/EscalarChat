@@ -193,7 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Math.abs(dragDelta) > clickThreshold) wasDragged = true;
     lastX = x;
     applyDragOverlay(dragDelta);
-    ev.preventDefault(); // solo evita el scroll cuando es movimiento lateral
   });
 
   function finishPointerInteraction(ev){
