@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /carrusel.css
+Allow: /carrusel.js
+Allow: /images/
+Allow: /favicon.png
+
+Sitemap: https://escalarchat.com/sitemap.xml
