@@ -220,11 +220,17 @@ body{
   -webkit-text-fill-color: transparent;
 }
 
+/* Busca esta regla en grid-glass.css */
 .card-description {
-  color: var(--text-secondary);
-  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
-  flex-grow: 1;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+
+  /* ---- AÑADE ESTAS DOS LÍNEAS ---- */
+  /* Forzamos una altura fija (aprox. 3 líneas) */
+  height: 4.6rem; 
+  overflow: hidden; /* Oculta cualquier texto que se pase */
 }
 
 .card-tech {
