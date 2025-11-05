@@ -145,7 +145,7 @@
 }
 
 .service-card.expanded .expanded-content {
-  max-height: 1000px;
+  max-height: 1000px; /* Ajusta si tu contenido es más alto */
   opacity: 1;
   margin-top: 24px;
 }
@@ -188,6 +188,7 @@
 .features-list {
   list-style: none;
   margin-top: 16px;
+  padding-left: 0; /* Asegúrate de que no tenga padding por defecto */
 }
 
 .features-list li {
@@ -321,7 +322,7 @@
   .service-card.expanded,
   .service-card.fill-space {
     grid-column: span 1;
-    grid-row: span 1;
+    grid-row: span 1; /* En móvil, la expansión es solo vertical */
     padding: 28px;
   }
 
@@ -376,34 +377,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-/* ==== OPTIMIZACIÓN DE ORDEN Y ADAPTABILIDAD ==== */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  justify-items: stretch;
-  align-items: start;
-  transition: all 0.3s ease;
-}
-
-.service-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Mantiene posición al expandirse (sin romper el orden visual) */
-.service-card.expanded {
-  grid-column: span 1 !important;
-  grid-row: auto !important;
-}
-/* ==== OPTIMIZACIÓN DE RENDIMIENTO MÓVIL ==== */
-@media (max-width: 640px) {
-  .service-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    animation: none; /* desactiva animaciones de entrada en móvil */
-  }
-  .expanded-content {
-    transition: all 0.25s ease; /* hace que expandir sea más fluido */
   }
 }

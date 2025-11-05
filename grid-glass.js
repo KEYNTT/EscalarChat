@@ -1,10 +1,3 @@
-  
-  if (/Mobi|Android/i.test(navigator.userAgent)) {
-    document.querySelectorAll('.service-card').forEach(card => {
-      card.style.transition = 'none'; // elimina animaciones lentas en móviles
-    });
-  }
-
 // === GRID GLASSMORPHISM FUNCTIONALITY ===
 
 let currentExpanded = null;
@@ -32,34 +25,44 @@ function toggleCard(card) {
   if (!wasExpanded) {
     currentExpanded = card;
     
-    // Lógica para expandir la tarjeta adyacente cuando sea necesario
-    // En un grid de 4 columnas (índices 0-7 para 8 tarjetas)
-    const row = Math.floor(cardIndex / 4);
-    const col = cardIndex % 4;
+    // --- INICIO: Lógica para 'fill-space' ---
+    // Esta lógica depende del número de columnas definido en el CSS (media queries)
     
-    // Si la tarjeta expandida está en las columnas 0 o 1
-    if (col <= 1) {
-      // Verificar si hay una tarjeta sola en la misma fila a la derecha
-      const rightIndex = cardIndex + 2; // 2 posiciones a la derecha (después de la expandida)
-      if (rightIndex < cards.length && Math.floor(rightIndex / 4) === row) {
-        fillSpaceCard = cards[rightIndex];
-        fillSpaceCard.classList.add('fill-space');
-      }
+    let columns = 4; // Default para desktop
+    if (window.innerWidth <= 1200) columns = 3;
+    if (window.innerWidth <= 900) columns = 2;
+    if (window.innerWidth <= 640) columns = 1;
+
+    if (columns > 1) {
+        const row = Math.floor(cardIndex / columns);
+        const col = cardIndex % columns;
+        
+        // Si la tarjeta expandida está en las columnas 0 o 1 (en 4-col)
+        // o columna 0 (en 3-col y 2-col)
+        if (col < columns - 2) {
+            // Verificar si hay una tarjeta sola en la misma fila a la derecha
+            const rightIndex = cardIndex + 2; // 2 posiciones a la derecha (después de la expandida)
+            if (rightIndex < cards.length && Math.floor(rightIndex / columns) === row) {
+                fillSpaceCard = cards[rightIndex];
+                fillSpaceCard.classList.add('fill-space');
+            }
+        }
+        // Si la tarjeta expandida está en la penúltima columna
+        else if (col === columns - 2) {
+            // La tarjeta de la derecha (última col) quedará sola, expandirla
+            const rightIndex = cardIndex + 1;
+            if (rightIndex < cards.length && Math.floor(rightIndex / columns) === row) {
+                fillSpaceCard = cards[rightIndex];
+                fillSpaceCard.classList.add('fill-space');
+            }
+        }
     }
-    // Si la tarjeta expandida está en la columna 2
-    else if (col === 2) {
-      // La tarjeta de la derecha (col 3) quedará sola, expandirla
-      const rightIndex = cardIndex + 1;
-      if (rightIndex < cards.length && Math.floor(rightIndex / 4) === row) {
-        fillSpaceCard = cards[rightIndex];
-        fillSpaceCard.classList.add('fill-space');
-      }
-    }
+    // --- FIN: Lógica para 'fill-space' ---
 
     // Scroll suave hacia la tarjeta expandida
     setTimeout(() => {
       card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
+    }, 100); // Pequeño delay para dar tiempo a la transición CSS
   } else {
     currentExpanded = null;
   }
@@ -68,7 +71,7 @@ function toggleCard(card) {
 // Cerrar al hacer click en el botón X
 document.addEventListener('click', function(e) {
   if (e.target.classList.contains('close-btn') || e.target.parentElement.classList.contains('close-btn')) {
-    e.stopPropagation();
+    e.stopPropagation(); // Evita que el click se propague a la tarjeta
     const card = e.target.closest('.service-card');
     if (card) {
       card.classList.remove('expanded');
@@ -96,3 +99,27 @@ document.addEventListener('keydown', function(e) {
     }
   }
 });
+
+
+// Optimización para móviles que estaba en el CSS
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+  document.querySelectorAll('.service-card').forEach(card => {
+    // Podrías quitar animaciones o transiciones aquí si es necesario
+    // Ejemplo: card.style.transition = 'none';
+  });
+  
+  // Hacer la expansión/colapso más rápido en móvil
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @media (max-width: 640px) {
+      .service-card {
+        transition: all 0.25s ease;
+        animation: none; /* desactiva animaciones de entrada en móvil */
+      }
+      .expanded-content {
+        transition: all 0.25s ease;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
