@@ -50,6 +50,345 @@
       <div class="glass-line"></div>
     </section>
 
+
+    <!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>ESCALAR CHAT | Automatiza. Vende. Escala.</title>
+  <link rel="stylesheet" href="carrusel.css">
+  <link rel="stylesheet" href="grid-glass.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-container">
+      <img src="images/logo.png" alt="Logo Escalar Chat" class="logo">
+      <button id="menuToggle" class="menu-toggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECCIÓN DE INICIO CON STAR TRAILS ORBITAL -->
+    <section class="animated-hero">
+      <div class="orbital-trails">
+        <div class="orbital-particle"></div>
+        <div class="orbital-particle"></div>
+        <div class="orbital-particle"></div>
+        <div class="orbital-particle"></div>
+      </div>
+      
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">ESCALAR CHAT</h1>
+          <p class="hero-subtitle">Automatiza. Vende. Escala.</p>
+          <p class="hero-description">
+            Soluciones inteligentes de mensajería automatizada para impulsar tu negocio al siguiente nivel
+          </p>
+          <div class="hero-buttons">
+            <button class="hero-btn primary">Comenzar Ahora</button>
+            <button class="hero-btn secondary">Ver Demostración</button>
+          </div>
+        </div>
+        
+        <div class="hero-image">
+          <img src="images/hero-image.png" alt="Escalar Chat" class="hero-img">
+        </div>
+      </div>
+      <div class="glass-line"></div>
+    </section>
+
+    <!-- SECCIÓN GRID GLASSMORPHISM -->
+    <section class="services-section">
+      <div class="services-container">
+        <h2 class="services-title">✨ Nuestros Servicios</h2>
+        
+        <div class="services-grid">
+          <div class="service-card" data-index="0" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">🤖</div>
+              <h3>Chatbots Inteligentes</h3>
+              <p class="card-description">Automatiza conversaciones con IA avanzada que entiende y responde como un humano.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>⚡ Respuesta Instantánea</h4>
+                  <p>Atención 24/7 sin tiempos de espera</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🎯 Precisión IA</h4>
+                  <p>Comprensión contextual del 95%</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🔄 Multi-plataforma</h4>
+                  <p>WhatsApp, Telegram, Facebook y más</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Entrenamiento personalizado para tu negocio</li>
+                <li>Integración con CRM y bases de datos</li>
+                <li>Análisis de sentimiento en tiempo real</li>
+                <li>Escalamiento automático según demanda</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="1" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">📊</div>
+              <h3>Analytics Avanzado</h3>
+              <p class="card-description">Métricas detalladas y reportes en tiempo real para optimizar tu estrategia.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>📈 Dashboard Real-time</h4>
+                  <p>Visualización instantánea de métricas clave</p>
+                </div>
+                <div class="detail-item">
+                  <h4>💡 Insights IA</h4>
+                  <p>Recomendaciones automáticas basadas en datos</p>
+                </div>
+                <div class="detail-item">
+                  <h4>📱 Mobile-First</h4>
+                  <p>Accede desde cualquier dispositivo</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Tasa de conversión y engagement detallado</li>
+                <li>Análisis predictivo de comportamiento</li>
+                <li>Reportes personalizables exportables</li>
+                <li>Alertas inteligentes de oportunidades</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="2" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">🎯</div>
+              <h3>Campañas Masivas</h3>
+              <p class="card-description">Envía mensajes personalizados a miles de clientes simultáneamente.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>🚀 Alto Volumen</h4>
+                  <p>Hasta 100,000 mensajes por hora</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🎨 Personalización</h4>
+                  <p>Variables dinámicas para cada cliente</p>
+                </div>
+                <div class="detail-item">
+                  <h4>⏰ Programación</h4>
+                  <p>Envíos automáticos en horarios óptimos</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Segmentación avanzada de audiencias</li>
+                <li>A/B testing automático de mensajes</li>
+                <li>Gestión de listas y contactos</li>
+                <li>Cumplimiento GDPR y normativas locales</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="3" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">💳</div>
+              <h3>Pagos Integrados</h3>
+              <p class="card-description">Procesa pagos directamente en la conversación de manera segura.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>🔒 Máxima Seguridad</h4>
+                  <p>Certificación PCI-DSS nivel 1</p>
+                </div>
+                <div class="detail-item">
+                  <h4>💰 Multi-moneda</h4>
+                  <p>Soporte para 150+ divisas globales</p>
+                </div>
+                <div class="detail-item">
+                  <h4>📲 Checkout Fácil</h4>
+                  <p>Proceso de pago en 3 clicks</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Integración con Stripe, PayPal y más</li>
+                <li>Suscripciones y pagos recurrentes</li>
+                <li>Facturación automática personalizada</li>
+                <li>Gestión de reembolsos simplificada</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="4" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">🔗</div>
+              <h3>Integraciones API</h3>
+              <p class="card-description">Conecta con tus herramientas favoritas mediante API potente y flexible.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>⚡ RESTful API</h4>
+                  <p>Documentación completa y ejemplos</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🔌 Webhooks</h4>
+                  <p>Eventos en tiempo real</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🛠️ SDKs Oficiales</h4>
+                  <p>Python, Node.js, PHP y más</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Integración con Zapier y Make</li>
+                <li>Conectores nativos para CRMs populares</li>
+                <li>API GraphQL para consultas complejas</li>
+                <li>Rate limits generosos y escalables</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="5" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">👥</div>
+              <h3>CRM Integrado</h3>
+              <p class="card-description">Gestiona relaciones con clientes desde una plataforma unificada.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>📋 Vista 360°</h4>
+                  <p>Historial completo de interacciones</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🏷️ Etiquetado</h4>
+                  <p>Organización flexible por categorías</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🎯 Lead Scoring</h4>
+                  <p>Priorización automática de prospectos</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Pipeline de ventas visual y personalizable</li>
+                <li>Automatización de follow-ups</li>
+                <li>Notas y tareas compartidas en equipo</li>
+                <li>Sincronización bidireccional con CRMs</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="6" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">🎓</div>
+              <h3>Capacitación</h3>
+              <p class="card-description">Formación completa para tu equipo con certificación incluida.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>📚 Cursos Online</h4>
+                  <p>Biblioteca con 50+ tutoriales</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🎥 Webinars Live</h4>
+                  <p>Sesiones semanales con expertos</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🏆 Certificaciones</h4>
+                  <p>Badges verificables por niveles</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Onboarding personalizado 1-on-1</li>
+                <li>Base de conocimientos actualizada</li>
+                <li>Comunidad privada de usuarios</li>
+                <li>Soporte técnico prioritario 24/7</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="7" onclick="toggleCard(this)">
+            <div class="status-badge"></div>
+            <div class="close-btn"></div>
+            <div class="card-header">
+              <div class="card-icon">🚀</div>
+              <h3>Escalamiento</h3>
+              <p class="card-description">Crece sin límites con infraestructura que se adapta a tu demanda.</p>
+            </div>
+            <div class="expanded-content">
+              <div class="details-grid">
+                <div class="detail-item">
+                  <h4>☁️ Cloud Native</h4>
+                  <p>Arquitectura distribuida y resiliente</p>
+                </div>
+                <div class="detail-item">
+                  <h4>📈 Auto-scaling</h4>
+                  <p>Recursos que crecen contigo</p>
+                </div>
+                <div class="detail-item">
+                  <h4>🌍 Global CDN</h4>
+                  <p>Latencia mínima en todo el mundo</p>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>99.99% de uptime garantizado con SLA</li>
+                <li>Backups automáticos cada 6 horas</li>
+                <li>Disaster recovery con RPO < 1 hora</li>
+                <li>Monitoreo 24/7 con alertas proactivas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DEL CARRUSEL -->
+    <section class="hero" id="home">
+      <div class="carousel-container">
+        <div class="carousel" id="carousel"></div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prevBtn" aria-label="Anterior">‹</button>
+          <button class="carousel-btn" id="nextBtn" aria-label="Siguiente">›</button>
+        </div>
+        <div class="carousel-indicators" id="indicators"></div>
+      </div>
+    </section>
+  </main>
+
+  <p class="animated-title">Escalar Chat</p>
+  <p>03/11/25</p>
+  <script src="carrusel.js"></script>
+  <script src="grid-glass.js"></script>
+</body>
+</html>
+
     <!-- SECCIÓN DEL CARRUSEL -->
     <section class="hero" id="home">
       <div class="carousel-container">
