@@ -1,3 +1,10 @@
+  
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.style.transition = 'none'; // elimina animaciones lentas en móviles
+    });
+  }
+
 // === GRID GLASSMORPHISM FUNCTIONALITY ===
 
 let currentExpanded = null;

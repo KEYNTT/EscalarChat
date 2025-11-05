@@ -378,3 +378,32 @@
     transform: translateY(0);
   }
 }
+/* ==== OPTIMIZACIÓN DE ORDEN Y ADAPTABILIDAD ==== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  justify-items: stretch;
+  align-items: start;
+  transition: all 0.3s ease;
+}
+
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Mantiene posición al expandirse (sin romper el orden visual) */
+.service-card.expanded {
+  grid-column: span 1 !important;
+  grid-row: auto !important;
+}
+/* ==== OPTIMIZACIÓN DE RENDIMIENTO MÓVIL ==== */
+@media (max-width: 640px) {
+  .service-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: none; /* desactiva animaciones de entrada en móvil */
+  }
+  .expanded-content {
+    transition: all 0.25s ease; /* hace que expandir sea más fluido */
+  }
+}
