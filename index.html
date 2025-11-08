@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -6,9 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" type="image/png" href="favicon.png">
   <title>ESCALAR CHAT | Automatiza. Vende. Escala.</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="carrusel.css">
   <link rel="stylesheet" href="grid-glass.css">
+  <link rel="stylesheet" href="css/timeline.css"> <!-- Tu CSS de timeline -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="header">
@@ -23,7 +27,8 @@
   </header>
 
   <main>
-    <!-- SECCIÓN DE INICIO CON STAR TRAILS ORBITAL -->
+
+    <!-- === SECCIÓN HERO CON STAR TRAILS ORBITAL === -->
     <section class="animated-hero">
       <div class="orbital-trails">
         <div class="orbital-particle"></div>
@@ -33,11 +38,11 @@
       </div>
       
       <div class="hero-content">
-        <div class="hero-text">
+        <div class="hero-text" data-aos="fade-up">
           <h1 class="hero-title">ESCALAR CHAT</h1>
           <p class="hero-subtitle">Automatiza. Vende. Escala.</p>
           <p class="hero-description">
-            Soluciones inteligentes de mensajería automatizada para impulsar tu negocio al siguiente nivel
+            Soluciones inteligentes de mensajería automatizada para impulsar tu negocio al siguiente nivel.
           </p>
           <div class="hero-buttons">
             <button class="hero-btn primary">Comenzar Ahora</button>
@@ -45,14 +50,106 @@
           </div>
         </div>
         
-        <div class="hero-image">
+        <div class="hero-image" data-aos="fade-left" data-aos-delay="300">
           <img src="images/hero-image.png" alt="Escalar Chat" class="hero-img">
         </div>
       </div>
+
+      <!-- LÍNEA DE CRISTAL -->
       <div class="glass-line"></div>
     </section>
 
-    <!-- SECCIÓN DEL CARRUSEL -->
+    <!-- === SECCIÓN DE PROBLEMAS CON LÍNEA SEGMENTADA === -->
+    <section class="problemas-wrapper">
+      <div class="problemas-container">
+        <!-- PROBLEMA 1 -->
+        <div class="problema" data-aos="fade-up">
+          <div class="segmento"></div>
+          <div class="problema-punto"></div>
+          <div class="problema-contenido">
+            <span class="problema-etiqueta">PROBLEMA 1</span>
+            <h2 class="problema-titulo">Quiero cambiar pero no puedo</h2>
+            <p>Conozco la frustración de querer cambiar...</p>
+            <img src="images/hero1.jpg" alt="Imagen problema 1" class="problema-img">
+          </div>
+        </div>
+
+        <!-- PROBLEMA 2 -->
+        <div class="problema" data-aos="fade-up">
+          <div class="segmento"></div>
+          <div class="problema-punto"></div>
+          <div class="problema-contenido">
+            <span class="problema-etiqueta">PROBLEMA 2</span>
+            <h2 class="problema-titulo">Me cuesta ser social, soy tímido</h2>
+            <p>Te convertirás en un Maestro del Carisma...</p>
+            <img src="images/hero2.jpg" alt="Imagen problema 2" class="problema-img">
+          </div>
+        </div>
+
+        <!-- PROBLEMA 3 -->
+        <div class="problema" data-aos="fade-up">
+          <div class="segmento"></div>
+          <div class="problema-punto"></div>
+          <div class="problema-contenido">
+            <span class="problema-etiqueta">PROBLEMA 3</span>
+            <h2 class="problema-titulo">No logro mantener la motivación</h2>
+            <p>Descubre cómo mantener el impulso sin agotarte...</p>
+            <img src="images/hero3.jpg" alt="Imagen problema 3" class="problema-img">
+          </div>
+        </div>
+
+        <!-- PROBLEMA 4 -->
+        <div class="problema" data-aos="fade-up">
+          <div class="segmento"></div>
+          <div class="problema-punto"></div>
+          <div class="problema-contenido">
+            <span class="problema-etiqueta">PROBLEMA 4</span>
+            <h2 class="problema-titulo">Siento que no avanzo</h2>
+            <p>Una guía para medir tu progreso real...</p>
+            <img src="images/hero4.jpg" alt="Imagen problema 4" class="problema-img">
+          </div>
+        </div>
+
+        <!-- PROBLEMA 5 -->
+        <div class="problema" data-aos="fade-up">
+          <div class="segmento"></div>
+          <div class="problema-punto"></div>
+          <div class="problema-contenido">
+            <span class="problema-etiqueta">PROBLEMA 5</span>
+            <h2 class="problema-titulo">El miedo al fracaso me detiene</h2>
+            <p>Aprende a dominar tus miedos para actuar con confianza...</p>
+            <img src="images/hero5.jpg" alt="Imagen problema 5" class="problema-img">
+          </div>
+        </div>
+
+        <!-- PROBLEMA 6 -->
+        <div class="problema" data-aos="fade-up">
+          <div class="segmento"></div>
+          <div class="problema-punto"></div>
+          <div class="problema-contenido">
+            <span class="problema-etiqueta">PROBLEMA 6</span>
+            <h2 class="problema-titulo">No sé por dónde empezar</h2>
+            <p>Una hoja de ruta clara para tomar acción...</p>
+            <img src="images/hero6.jpg" alt="Imagen problema 6" class="problema-img">
+          </div>
+        </div>
+
+        <!-- PROBLEMA 7 -->
+        <div class="problema" data-aos="fade-up">
+          <div class="segmento"></div>
+          <div class="problema-punto"></div>
+          <div class="problema-contenido">
+            <span class="problema-etiqueta">PROBLEMA 7</span>
+            <h2 class="problema-titulo">Siento que no tengo propósito</h2>
+            <p>Encuentra tu dirección y da sentido a cada paso...</p>
+            <img src="images/hero7.jpg" alt="Imagen problema 7" class="problema-img">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- === SECCIÓN DEL CARRUSEL === -->
     <section class="hero" id="home">
       <div class="carousel-container">
         <div class="carousel" id="carousel"></div>
@@ -63,12 +160,25 @@
         <div class="carousel-indicators" id="indicators"></div>
       </div>
     </section>
+
   </main>
 
   <p class="animated-title">Escalar Chat</p>
   <p>08/11/25</p>
+
+  <!-- JS: pon los scripts al final para que el DOM ya esté cargado -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="carrusel.js"></script>
   <script src="grid-glass.js"></script>
+  <script src="js/timeline.js"></script> <!-- Tu JS del timeline -->
+  <script>
+    // inicializa AOS después de cargar AOS.js
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-out-quart',
+      once: true
+    });
+  </script>
+
 </body>
 </html>
-
