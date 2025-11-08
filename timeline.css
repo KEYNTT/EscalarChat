@@ -116,3 +116,53 @@
     transform: none;
   }
 }
+/* === MEJORAS RESPONSIVE ADICIONALES === */
+@media (max-width: 900px) {
+  .timeline-line {
+    left: 20px;
+    transform: none;
+  }
+
+  .problema {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 100px 0; /* Menor separación vertical */
+  }
+
+  .problema-contenido {
+    width: calc(100% - 50px); /* Se adapta al ancho del móvil */
+    margin-left: 40px;
+    transform: none !important;
+    text-align: left !important;
+    padding: 20px;
+  }
+
+  .problema-img {
+    width: 100%;
+    max-width: 100%; /* Se asegura de nunca salirse del contenedor */
+    height: auto;
+    margin-top: 15px;
+  }
+
+  .problema-punto {
+    left: 20px;
+    transform: none;
+  }
+}
+
+/* Para pantallas muy pequeñas (ej. teléfonos de 360px) */
+@media (max-width: 480px) {
+  .problema {
+    margin: 80px 0;
+  }
+
+  .problema-contenido {
+    width: calc(100% - 30px);
+    margin-left: 30px;
+    padding: 16px;
+  }
+
+  .problema-img {
+    border-radius: 8px;
+  }
+}
