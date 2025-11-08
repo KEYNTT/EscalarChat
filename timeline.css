@@ -3,7 +3,7 @@
   position: relative;
   background: #0a0a0a;
   padding: 150px 0;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .problemas-container {
@@ -21,148 +21,9 @@
   transform: translateX(-50%);
   width: 4px;
   height: 100%;
-  background: rgba(255,255,255,0.08);
-  z-index: 0;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 2px;
+  z-index: 0;
+  transition: background 0.3s ease;
 }
 
-/* === CADA PROBLEMA === */
-.problema {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 180px 0;
-  z-index: 2;
-}
-
-/* PUNTO CENTRAL */
-.problema-punto {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 18px;
-  height: 18px;
-  background: #ff6600;
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255,102,0,0.8);
-  z-index: 3;
-}
-
-/* CONTENIDO TEXTO */
-.problema-contenido {
-  width: 45%;
-  max-width: 500px;
-  padding: 40px;
-  border-radius: 12px;
-  color: #fff;
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-/* ALTERNAR LADOS */
-.problema:nth-child(odd) .problema-contenido {
-  text-align: right;
-  margin-right: 5%;
-  transform: translateX(-60px);
-}
-.problema:nth-child(even) .problema-contenido {
-  text-align: left;
-  margin-left: 5%;
-  transform: translateX(60px);
-}
-
-/* IMAGEN DEBAJO DEL TEXTO */
-.problema-img {
-  display: block;
-  width: 100%;
-  max-width: 380px;
-  border-radius: 12px;
-  margin-top: 20px;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-/* ANIMACIÓN AL HACER SCROLL */
-.problema[data-aos] {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-.problema[data-aos].aos-animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 900px) {
-  .timeline-line {
-    left: 30px;
-    transform: none;
-  }
-  .problema {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .problema-contenido {
-    width: 85%;
-    margin-left: 60px;
-    transform: none !important;
-    text-align: left !important;
-  }
-  .problema-punto {
-    left: 30px;
-    transform: none;
-  }
-}
-/* === MEJORAS RESPONSIVE ADICIONALES === */
-@media (max-width: 900px) {
-  .timeline-line {
-    left: 20px;
-    transform: none;
-  }
-
-  .problema {
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 100px 0; /* Menor separación vertical */
-  }
-
-  .problema-contenido {
-    width: calc(100% - 50px); /* Se adapta al ancho del móvil */
-    margin-left: 40px;
-    transform: none !important;
-    text-align: left !important;
-    padding: 20px;
-  }
-
-  .problema-img {
-    width: 100%;
-    max-width: 100%; /* Se asegura de nunca salirse del contenedor */
-    height: auto;
-    margin-top: 15px;
-  }
-
-  .problema-punto {
-    left: 20px;
-    transform: none;
-  }
-}
-
-/* Para pantallas muy pequeñas (ej. teléfonos de 360px) */
-@media (max-width: 480px) {
-  .problema {
-    margin: 80px 0;
-  }
-
-  .problema-contenido {
-    width: calc(100% - 30px);
-    margin-left: 30px;
-    padding: 16px;
-  }
-
-  .problema-img {
-    border-radius: 8px;
-  }
-}
