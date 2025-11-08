@@ -8,26 +8,16 @@
   --text-primary:#fff;
   --text-secondary:#b0b0b0;
 }
-/* === FONDO OSCURO MATE === */
-body {
-  background-color: #0a0a0a;
-  background-image:
-    radial-gradient(circle at top center, rgba(255,255,255,0.05), transparent 70%),
-    url('texturas/dark-mosaic.png');
-  background-size: cover, auto;
-  background-repeat: no-repeat, repeat;
-  background-attachment: fixed;
-  color: var(--text-primary);
-}
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family: Inter, "Rajdhani", "Orbitron", sans-serif;
+  background: var(--primary-black);
   color:var(--text-primary);
   overflow-x:hidden;
   padding-top:10px;
 }
-
 /* === HEADER CON TRANSPARENCIA === */
 .header {
   position: fixed;
