@@ -1,28 +1,49 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const timelineLine = document.querySelector(".timeline-line");
-  const problemas = document.querySelectorAll(".problema");
+document.addEventListener('DOMContentLoaded', () => {
+  const timeline = document.querySelector('.timeline');
+  const progress = document.querySelector('.timeline-progress');
+  const items = document.querySelectorAll('.timeline-item');
 
-  window.addEventListener("scroll", () => {
-    const wrapper = document.querySelector(".problemas-wrapper");
-    const rect = wrapper.getBoundingClientRect();
-    const total = wrapper.offsetHeight;
-    const visible = window.innerHeight;
-    const scroll = Math.min(Math.max(-rect.top, 0), total - visible);
-    const progress = (scroll / (total - visible)) * 100;
+  if (!timeline || !progress) {
+    // Si no existen, no hacemos nada (evita errores JS)
+    console.warn('Timeline o progress no encontrados.');
+    return;
+  }
 
-    timelineLine.style.background = `linear-gradient(180deg, #ff6600 ${progress}%, rgba(255,255,255,0.08) ${progress}%)`;
+  // cálculo robusto del progreso: prog 0 cuando el top del timeline entra en viewport,
+  // prog 1 cuando el bottom sale por encima del top de viewport.
+  function updateProgress() {
+    const timelineTop = timeline.offsetTop;
+    const timelineHeight = timeline.offsetHeight;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const windowH = window.innerHeight;
 
-    problemas.forEach((p, i) => {
-      const punto = p.querySelector(".problema-punto");
-      const box = p.getBoundingClientRect();
-      const middle = window.innerHeight / 2;
-      if (box.top < middle && box.bottom > middle) {
-        punto.style.boxShadow = "0 0 30px rgba(255,102,0,1)";
-        punto.style.opacity = "1";
-      } else {
-        punto.style.boxShadow = "0 0 10px rgba(255,102,0,0.5)";
-        punto.style.opacity = "0.6";
+    // definimos inicio (cuando la parte superior del timeline aparece en pantalla)
+    const start = timelineTop - windowH;
+    // definimos final (cuando el timeline ya salió)
+    const end = timelineTop + timelineHeight;
+
+    // progreso normalizado (0..1)
+    const raw = (scrollY - start) / (end - start);
+    const clamped = Math.max(0, Math.min(1, raw));
+
+    progress.style.height = `${clamped * 100}%`;
+  }
+
+  // Llamamos en scroll y resize (performance: throttle si fuera necesario)
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+
+  // Llamada inicial
+  updateProgress();
+
+  // IntersectionObserver para reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       }
     });
-  });
+  }, { threshold: 0.18 });
+
+  items.forEach(item => revealObserver.observe(item));
 });
