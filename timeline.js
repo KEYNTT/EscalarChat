@@ -1,49 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const timeline = document.querySelector('.timeline');
-  const progress = document.querySelector('.timeline-progress');
-  const items = document.querySelectorAll('.timeline-item');
+window.addEventListener("scroll", () => {
+  const timeline = document.querySelector(".timeline");
+  const progress = document.querySelector(".timeline-progress");
 
-  if (!timeline || !progress) {
-    // Si no existen, no hacemos nada (evita errores JS)
-    console.warn('Timeline o progress no encontrados.');
-    return;
+  if (!timeline || !progress) return;
+
+  const rect = timeline.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const totalHeight = rect.height;
+
+  // Calcular cuánto del timeline está visible en el viewport
+  let progressPercent;
+
+  if (rect.top > windowHeight) {
+    // Timeline aún no visible
+    progressPercent = 0;
+  } else if (rect.bottom < 0) {
+    // Timeline ya pasó por completo
+    progressPercent = 100;
+  } else {
+    // Calcular progreso proporcional dentro del timeline
+    const visible = windowHeight - rect.top;
+    progressPercent = (visible / (totalHeight + windowHeight)) * 100;
   }
 
-  // cálculo robusto del progreso: prog 0 cuando el top del timeline entra en viewport,
-  // prog 1 cuando el bottom sale por encima del top de viewport.
-  function updateProgress() {
-    const timelineTop = timeline.offsetTop;
-    const timelineHeight = timeline.offsetHeight;
-    const scrollY = window.scrollY || window.pageYOffset;
-    const windowH = window.innerHeight;
+  // Limitar entre 0 y 100
+  progressPercent = Math.min(Math.max(progressPercent, 0), 100);
+  progress.style.height = `${progressPercent}%`;
+});
 
-    // definimos inicio (cuando la parte superior del timeline aparece en pantalla)
-    const start = timelineTop - windowH;
-    // definimos final (cuando el timeline ya salió)
-    const end = timelineTop + timelineHeight;
+// === ANIMACIÓN DE APARICIÓN DE LOS APARTADOS ===
+const items = document.querySelectorAll(".timeline-item");
 
-    // progreso normalizado (0..1)
-    const raw = (scrollY - start) / (end - start);
-    const clamped = Math.max(0, Math.min(1, raw));
-
-    progress.style.height = `${clamped * 100}%`;
-  }
-
-  // Llamamos en scroll y resize (performance: throttle si fuera necesario)
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  window.addEventListener('resize', updateProgress);
-
-  // Llamada inicial
-  updateProgress();
-
-  // IntersectionObserver para reveal
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible"); // <-- se ocultan al subir
       }
     });
-  }, { threshold: 0.18 });
+  },
+  { threshold: 0.3 }
+);
 
-  items.forEach(item => revealObserver.observe(item));
-});
+items.forEach((item) => observer.observe(item));
