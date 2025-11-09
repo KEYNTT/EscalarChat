@@ -1,47 +1,44 @@
-window.addEventListener("scroll", () => {
+// === timeline.js ===
+
+// Espera a que todo cargue
+window.addEventListener("DOMContentLoaded", () => {
   const timeline = document.querySelector(".timeline");
   const progress = document.querySelector(".timeline-progress");
+  const items = document.querySelectorAll(".timeline-item");
 
-  if (!timeline || !progress) return;
+  // Actualizar el progreso según el scroll
+  const updateProgress = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const timelineTop = timeline.offsetTop;
+    const timelineHeight = timeline.scrollHeight;
+    const timelineBottom = timelineTop + timelineHeight;
 
-  const rect = timeline.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-  const totalHeight = rect.height;
+    // Calcular cuánto ha avanzado el usuario dentro del timeline
+    let progressPercent = ((scrollTop + windowHeight / 2 - timelineTop) / (timelineHeight)) * 100;
 
-  // Calcular cuánto del timeline está visible en el viewport
-  let progressPercent;
+    // Limitar entre 0% y 100%
+    progressPercent = Math.max(0, Math.min(progressPercent, 100));
 
-  if (rect.top > windowHeight) {
-    // Timeline aún no visible
-    progressPercent = 0;
-  } else if (rect.bottom < 0) {
-    // Timeline ya pasó por completo
-    progressPercent = 100;
-  } else {
-    // Calcular progreso proporcional dentro del timeline
-    const visible = windowHeight - rect.top;
-    progressPercent = (visible / (totalHeight + windowHeight)) * 100;
-  }
+    // Aplicar altura real
+    progress.style.height = progressPercent + "%";
 
-  // Limitar entre 0 y 100
-  progressPercent = Math.min(Math.max(progressPercent, 0), 100);
-  progress.style.height = `${progressPercent}%`;
-});
+    // Mostrar los items visibles uno por uno
+    items.forEach((item, index) => {
+      const rect = item.getBoundingClientRect();
+      const triggerPoint = windowHeight * 0.8;
 
-// === ANIMACIÓN DE APARICIÓN DE LOS APARTADOS ===
-const items = document.querySelectorAll(".timeline-item");
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+      if (rect.top < triggerPoint && rect.bottom > 0) {
+        // Aparece con retraso progresivo
+        setTimeout(() => item.classList.add("visible"), index * 100);
       } else {
-        entry.target.classList.remove("visible"); // <-- se ocultan al subir
+        // Desaparece si subes
+        item.classList.remove("visible");
       }
     });
-  },
-  { threshold: 0.3 }
-);
+  };
 
-items.forEach((item) => observer.observe(item));
+  // Escuchar el scroll
+  window.addEventListener("scroll", updateProgress);
+  updateProgress(); // inicial
+});
