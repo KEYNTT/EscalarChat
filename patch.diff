@@ -1,0 +1,288 @@
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@
+-          <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
+-          <li class="nav-item"><a class="nav-link" href="#timeline">Problemas</a></li>
+-          <li class="nav-item"><a class="nav-link" href="#portfolio">Portafolio</a></li>
++          <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
++          <li class="nav-item"><a class="nav-link" href="#timeline">Problemas</a></li>
++          <li class="nav-item"><a class="nav-link" href="#portfolio">Portafolio</a></li>
++          <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+         </ul>
+       </nav>
+@@
+     <section class="hero" id="portfolio">
+       <div class="carousel-container">
+         <div class="carousel" id="carousel"></div>
+         <div class="carousel-controls">
+           <button class="carousel-btn" id="prevBtn">ƒ?1</button>
+           <button class="carousel-btn" id="nextBtn">ƒ?§</button>
+         </div>
+         <div class="carousel-indicators" id="indicators"></div>
+       </div>
+     </section>
++
++    <!-- CONTACTO -->
++    <section class="contact" id="contact">
++      <div class="contact-inner">
++        <div class="contact-copy">
++          <p class="contact-kicker">Contacto</p>
++          <h2 class="contact-title">Hablemos de tu siguiente escala</h2>
++          <p class="contact-text">
++            Comparte tu reto y volvemos con un plan concreto de automatizacion, integraciones y soporte.
++          </p>
++          <div class="contact-actions">
++            <a class="contact-btn primary" href="mailto:contacto@escalarchat.com">Enviar correo</a>
++            <a class="contact-btn ghost" href="https://cal.com/" target="_blank" rel="noopener">Agendar llamada</a>
++          </div>
++          <div class="contact-meta">
++            <div class="meta-item">
++              <span class="meta-label">Tiempo de respuesta</span>
++              <span class="meta-value">menor a 24h</span>
++            </div>
++            <div class="meta-item">
++              <span class="meta-label">Modalidad</span>
++              <span class="meta-value">Remoto / Hibrido</span>
++            </div>
++          </div>
++        </div>
++
++        <div class="contact-panel">
++          <div class="contact-option">
++            <div class="contact-bullet"></div>
++            <div>
++              <p class="contact-option-label">Correo directo</p>
++              <a class="contact-link" href="mailto:contacto@escalarchat.com">contacto@escalarchat.com</a>
++            </div>
++          </div>
++          <div class="contact-option">
++            <div class="contact-bullet"></div>
++            <div>
++              <p class="contact-option-label">Agenda</p>
++              <a class="contact-link" href="https://cal.com/" target="_blank" rel="noopener">Coordina un bloque de 20 min</a>
++            </div>
++          </div>
++          <div class="contact-option">
++            <div class="contact-bullet"></div>
++            <div>
++              <p class="contact-option-label">Canales</p>
++              <span class="contact-link">Bots de WhatsApp, web, CRM y voz</span>
++            </div>
++          </div>
++          <p class="contact-smallprint">Comparte volumen, SLA y herramientas actuales para llegar con propuestas claras.</p>
++        </div>
++      </div>
++    </section>
+   </main>
+ 
+   <p class="animated-title">Escalar Chat</p>
+   <p>08/11/25</p>
+ 
+   <script src="header.js"></script>
+   <script src="carrusel.js"></script>
+   <script src="grid-glass.js"></script>
+   <script src="timeline.js"></script>
+ </body>
+ </html>
+
+diff --git a/carrusel.css b/carrusel.css
+--- a/carrusel.css
++++ b/carrusel.css
+@@
+ @media (max-width: 520px) {
+   .animated-hero {
+     padding: 90px 20px 70px;
+   }
+@@
+     font-size: 0.85rem;
+   }
+   
+   .hero-img {
+     width: 240px;
+   }
+ }
++
++/* === CONTACTO === */
++.contact {
++  position: relative;
++  padding: 120px 20px 140px;
++}
++
++.contact::before {
++  content: "";
++  position: absolute;
++  inset: 0;
++  background: radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.08), transparent 32%),
++              radial-gradient(circle at 80% 40%, rgba(153, 69, 255, 0.07), transparent 30%);
++  pointer-events: none;
++  z-index: 0;
++}
++
++.contact-inner {
++  position: relative;
++  max-width: 1100px;
++  margin: 0 auto;
++  background: rgba(255, 255, 255, 0.03);
++  border: 1px solid rgba(255, 255, 255, 0.06);
++  border-radius: 28px;
++  padding: clamp(28px, 5vw, 48px);
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
++  gap: 32px;
++  backdrop-filter: blur(12px);
++  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
++  z-index: 1;
++}
++
++.contact-kicker {
++  color: #00ffff;
++  font-weight: 800;
++  letter-spacing: 0.6px;
++  text-transform: uppercase;
++  margin: 0 0 10px;
++  font-size: 0.85rem;
++}
++
++.contact-title {
++  font-size: clamp(1.9rem, 3vw, 2.5rem);
++  margin: 0 0 12px;
++  font-weight: 900;
++}
++
++.contact-text {
++  color: #cfd8dc;
++  line-height: 1.7;
++  margin: 0 0 22px;
++}
++
++.contact-actions {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 12px;
++  margin-bottom: 20px;
++}
++
++.contact-btn {
++  display: inline-flex;
++  align-items: center;
++  justify-content: center;
++  padding: 12px 22px;
++  border-radius: 999px;
++  font-weight: 800;
++  font-size: 0.9rem;
++  letter-spacing: 0.6px;
++  text-decoration: none;
++  transition: all 0.3s ease;
++  border: 1px solid transparent;
++}
++
++.contact-btn.primary {
++  background: linear-gradient(135deg, #00ced1, #00a8ff);
++  color: #000;
++  box-shadow: 0 10px 30px rgba(0, 168, 255, 0.35);
++}
++
++.contact-btn.primary:hover {
++  transform: translateY(-2px);
++  box-shadow: 0 14px 38px rgba(0, 168, 255, 0.45);
++}
++
++.contact-btn.ghost {
++  background: transparent;
++  color: #e0ffff;
++  border-color: rgba(255, 255, 255, 0.15);
++}
++
++.contact-btn.ghost:hover {
++  background: rgba(255, 255, 255, 0.05);
++  transform: translateY(-2px);
++}
++
++.contact-meta {
++  display: grid;
++  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
++  gap: 12px;
++}
++
++.meta-item {
++  padding: 12px 14px;
++  background: rgba(255, 255, 255, 0.02);
++  border: 1px solid rgba(255, 255, 255, 0.05);
++  border-radius: 12px;
++}
++
++.meta-label {
++  display: block;
++  color: #9fb3c8;
++  font-size: 0.85rem;
++  margin-bottom: 6px;
++}
++
++.meta-value {
++  color: #fff;
++  font-weight: 800;
++}
++
++.contact-panel {
++  background: rgba(0, 0, 0, 0.25);
++  border: 1px solid rgba(255, 255, 255, 0.08);
++  border-radius: 20px;
++  padding: 18px;
++  display: flex;
++  flex-direction: column;
++  gap: 12px;
++}
++
++.contact-option {
++  display: flex;
++  gap: 12px;
++  padding: 12px;
++  border-radius: 14px;
++  background: rgba(255, 255, 255, 0.02);
++  border: 1px solid rgba(255, 255, 255, 0.04);
++  align-items: flex-start;
++}
++
++.contact-bullet {
++  width: 12px;
++  height: 12px;
++  margin-top: 4px;
++  border-radius: 50%;
++  background: radial-gradient(circle, #00ffff 0%, #0081a7 70%);
++  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
++  flex-shrink: 0;
++}
++
++.contact-option-label {
++  font-weight: 800;
++  margin: 0 0 4px;
++}
++
++.contact-link {
++  color: #cfe8ff;
++  text-decoration: none;
++  font-size: 0.95rem;
++}
++
++.contact-link:hover {
++  color: #00a8ff;
++}
++
++.contact-smallprint {
++  color: #9fb3c8;
++  font-size: 0.9rem;
++  margin: 4px 2px 0;
++  line-height: 1.5;
++}
++
++@media (max-width: 768px) {
++  .contact {
++    padding: 90px 16px 110px;
++  }
++
++  .contact-inner {
++    gap: 24px;
++    padding: 24px;
++  }
++}

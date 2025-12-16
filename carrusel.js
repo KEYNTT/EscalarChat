@@ -267,3 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+const slogan = document.querySelector('.carousel-slogan');
+
+function fadeSlogan() {
+  slogan.classList.remove('fade');
+  void slogan.offsetWidth; // reset animación
+  slogan.classList.add('fade');
+}
