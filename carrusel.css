@@ -34,7 +34,7 @@ body{
   top: 0;
   left: 0;
   width: 100%;
-  height: 55px;
+  height: 72px;
   display: flex;
   align-items: center;
   background: rgba(20, 20, 20, 0.7);
@@ -53,32 +53,98 @@ body{
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 25px;
+  gap: 12px;
 }
 
 .logo {
-  height: 100px;
+  height: 72px;
   width: auto;
   object-fit: contain;
   cursor: pointer;
 }
 
-.menu-toggle {
+
+.nav {
+  margin-left: auto;
+}
+
+.nav-menu {
+  list-style: none;
   display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #00a8ff;
+  background: rgba(0, 168, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.menu-toggle {
+  display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 28px;
-  height: 20px;
+  width: 30px;
+  height: 22px;
   background: none;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 6px 6px;
   cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .menu-toggle span {
-  height: 3px;
+  height: 2px;
   width: 100%;
   background: #fff;
   border-radius: 3px;
   transition: all 0.3s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1500;
+}
+
+.menu-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 .header.scrolled {
@@ -91,36 +157,54 @@ body{
 
 /* === LOGO === */
 .logo {
-  height: 100px; /* Ajusté a 50px para que quede mejor en 72px de altura */
+  height: 72px; /* Ajuste para adaptarse al header fijo */
   width: auto;
   object-fit: contain;
   cursor: pointer;
-}
-
-/* === MENÚ HAMBURGUESA === */
-.menu-toggle {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.menu-toggle span {
-  height: 3px;
-  width: 100%;
-  background: #fff;
-  border-radius: 3px;
-  transition: all 0.3s ease;
 }
 
 /* Efecto al hacer scroll */
 .header.scrolled {
   background: rgba(0, 0, 0, 0.6);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 900px) {
+  .nav-menu {
+    position: fixed;
+    top: 72px;
+    right: 0;
+    width: min(320px, 78%);
+    height: calc(100vh - 72px);
+    padding: 28px 22px;
+    background: rgba(15, 15, 15, 0.98);
+    backdrop-filter: blur(18px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -12px 0 30px rgba(0,0,0,0.45);
+    z-index: 2000;
+  }
+
+  .nav-menu.open {
+    transform: translateX(0);
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    order: 3;
+  }
 }
 
 /* hero + carousel - VERSIÓN CORREGIDA */
@@ -703,3 +787,186 @@ body{
 }
 
 
+/* === CONTACTO === */
+.contact {
+  position: relative;
+  padding: 120px 20px 140px;
+}
+
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.08), transparent 32%),
+              radial-gradient(circle at 80% 40%, rgba(153, 69, 255, 0.07), transparent 30%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact-inner {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 28px;
+  padding: clamp(28px, 5vw, 48px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.contact-kicker {
+  color: #00ffff;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+}
+
+.contact-title {
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  margin: 0 0 12px;
+  font-weight: 900;
+}
+
+.contact-text {
+  color: #cfd8dc;
+  line-height: 1.7;
+  margin: 0 0 22px;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.contact-btn.primary {
+  background: linear-gradient(135deg, #00ced1, #00a8ff);
+  color: #000;
+  box-shadow: 0 10px 30px rgba(0, 168, 255, 0.35);
+}
+
+.contact-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(0, 168, 255, 0.45);
+}
+
+.contact-btn.ghost {
+  background: transparent;
+  color: #e0ffff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.contact-btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.contact-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.meta-item {
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.meta-label {
+  display: block;
+  color: #9fb3c8;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.meta-value {
+  color: #fff;
+  font-weight: 800;
+}
+
+.contact-panel {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-option {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  align-items: flex-start;
+}
+
+.contact-bullet {
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00ffff 0%, #0081a7 70%);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.contact-option-label {
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.contact-link {
+  color: #cfe8ff;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.contact-link:hover {
+  color: #00a8ff;
+}
+
+.contact-smallprint {
+  color: #9fb3c8;
+  font-size: 0.9rem;
+  margin: 4px 2px 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 90px 16px 110px;
+  }
+
+  .contact-inner {
+    gap: 24px;
+    padding: 24px;
+  }
+}
