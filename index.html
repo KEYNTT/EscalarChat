@@ -33,29 +33,17 @@
   <header class="header">
     <div class="header-container">
       <img src="images/logo.png" alt="Logo Escalar Chat" class="logo">
-
-      <nav class="nav" aria-label="Navegación principal">
-        <ul class="nav-menu" id="mainNav">
-          <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#timeline">Problemas</a></li>
-          <li class="nav-item"><a class="nav-link" href="#portfolio">Portafolio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
-        </ul>
-      </nav>
-
-      <button id="menuToggle" class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainNav">
+      <button id="menuToggle" class="menu-toggle" aria-label="Menú">
         <span></span>
         <span></span>
         <span></span>
       </button>
-
-      <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
     </div>
   </header>
 
   <main>
     <!-- SECCIÓN DE INICIO CON STAR TRAILS ORBITAL -->
-    <section class="animated-hero" id="home">
+    <section class="animated-hero">
       <div class="orbital-trails">
         <div class="orbital-particle"></div>
         <div class="orbital-particle"></div>
@@ -84,7 +72,7 @@
     </section>
 
     <!-- TIMELINE -->
-    <section class="timeline" id="timeline">
+    <section class="timeline">
       <div class="timeline-line">
         <div class="timeline-progress"></div>
         <div class="timeline-circle" id="circle1"></div>
@@ -161,7 +149,7 @@
     </section>
 
     <!-- CARRUSEL -->
-    <section class="hero" id="portfolio">
+    <section class="hero" id="home">
       <div class="carousel-container">
         <div class="carousel" id="carousel"></div>
         <div class="carousel-controls">
@@ -171,64 +159,11 @@
         <div class="carousel-indicators" id="indicators"></div>
       </div>
     </section>
-
-    <!-- CONTACTO -->
-    <section class="contact" id="contact">
-      <div class="contact-inner">
-        <div class="contact-copy">
-          <p class="contact-kicker">Contacto</p>
-          <h2 class="contact-title">Hablemos de tu siguiente escala</h2>
-          <p class="contact-text">
-            Comparte tu reto y volvemos con un plan concreto de automatizacion, integraciones y soporte.
-          </p>
-          <div class="contact-actions">
-            <a class="contact-btn primary" href="mailto:contacto@escalarchat.com">Enviar correo</a>
-            <a class="contact-btn ghost" href="https://cal.com/" target="_blank" rel="noopener">Agendar llamada</a>
-          </div>
-          <div class="contact-meta">
-            <div class="meta-item">
-              <span class="meta-label">Tiempo de respuesta</span>
-              <span class="meta-value">menor a 24h</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Modalidad</span>
-              <span class="meta-value">Remoto / Hibrido</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-panel">
-          <div class="contact-option">
-            <div class="contact-bullet"></div>
-            <div>
-              <p class="contact-option-label">Correo directo</p>
-              <a class="contact-link" href="mailto:contacto@escalarchat.com">contacto@escalarchat.com</a>
-            </div>
-          </div>
-          <div class="contact-option">
-            <div class="contact-bullet"></div>
-            <div>
-              <p class="contact-option-label">Agenda</p>
-              <a class="contact-link" href="https://cal.com/" target="_blank" rel="noopener">Coordina un bloque de 20 min</a>
-            </div>
-          </div>
-          <div class="contact-option">
-            <div class="contact-bullet"></div>
-            <div>
-              <p class="contact-option-label">Canales</p>
-              <span class="contact-link">Bots de WhatsApp, web, CRM y voz</span>
-            </div>
-          </div>
-          <p class="contact-smallprint">Comparte volumen, SLA y herramientas actuales para llegar con propuestas claras.</p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <p class="animated-title">Escalar Chat</p>
   <p>08/11/25</p>
 
-  <script src="header.js"></script>
   <script src="carrusel.js"></script>
   <script src="grid-glass.js"></script>
   <script src="timeline.js"></script>
